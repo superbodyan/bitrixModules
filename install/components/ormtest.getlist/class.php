@@ -11,7 +11,7 @@ class OrmGetList extends CBitrixComponent
 {
     /**
      * @throws \Bitrix\Main\LoaderException
-     * Проееряем, подключен ли модуль superbit
+     * Проверяем, подключен ли модуль superbit
      */
     protected function checkModules()
     {
