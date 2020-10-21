@@ -46,5 +46,17 @@ class OrmTestTable extends Entity\DataManager
             "NAME" => "Artem",
             "DATE_INSERT" => new Type\Date('1999-06-16', 'Y-m-d')
         ));
+        self::add(array(
+            "NAME" => "Julia",
+            "DATE_INSERT" => new Type\Date('1986-05-08', 'Y-m-d')
+        ));
+        self::add(array(
+            "NAME" => "Alex",
+            "DATE_INSERT" => new Type\Date('2001-12-14', 'Y-m-d')
+        ));
+        self::add(array(
+            "NAME" => "John",
+            "DATE_INSERT" => new Type\Date('1976-02-07', 'Y-m-d')
+        ));
     }
 }
