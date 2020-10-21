@@ -72,6 +72,7 @@ Class superbit extends CModule
         global $DOCUMENT_ROOT, $APPLICATION;
         $this->InstallDB();
         $this->InstallFiles();
+        \superBIT\sMain::makeUrlRewriteRules();
         RegisterModule($this->MODULE_ID);
         $APPLICATION->IncludeAdminFile("Установка модуля superBIT", $DOCUMENT_ROOT."/local/modules/superBIT/install/step.php");
     }
