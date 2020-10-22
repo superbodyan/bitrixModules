@@ -3,6 +3,8 @@ require_once( $_SERVER['DOCUMENT_ROOT'] . '/local/modules/superBIT/include.php')
 use Bitrix\Main\Loader;
 use Bitrix\Main\Application;
 use superBIT\ORMTEST\OrmTestTable;
+use superBIT\RegRuOrmTable;
+
 global $APPLICATION;
 
 Class superbit extends CModule
@@ -56,15 +58,27 @@ Class superbit extends CModule
             $storeEntity->createDbTable();
             OrmTestTable::createTestData(); // Добавляем тестовые записи
         }
+
+        $storeRegRuEntity = RegRuOrmTable::getEntity();
+        if (! $db->isTableExists($storeRegRuEntity->getDBTableName())) // проверяем, существует ли таблицы в системе
+        {
+            $storeRegRuEntity->createDbTable();
+        }
     }
 
     function UnInstallDB()
     {
         // удаляем созданную таблицу
         Loader::includeModule($this->MODULE_ID);
+
         \Bitrix\Main\Application::getConnection(OrmTestTable::getConnectionName())->
         queryExecute('drop table if exists ' . \Bitrix\Main\Entity\Base::getInstance("\superBIT\ORMTEST\OrmTestTable")->getDBTableName());
         \Bitrix\Main\Config\Option::delete($this->MODULE_ID);
+
+        \Bitrix\Main\Application::getConnection(RegRuOrmTable::getConnectionName())->
+        queryExecute('drop table if exists ' . \Bitrix\Main\Entity\Base::getInstance("\superBIT\RegRuOrmTable")->getDBTableName());
+        \Bitrix\Main\Config\Option::delete($this->MODULE_ID);
+
     }
 
     function DoInstall()
