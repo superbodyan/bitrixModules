@@ -4,7 +4,7 @@ namespace superBIT;
 
 use Bitrix\Main\Type;
 
-class RegRu
+final class RegRu
 {
     use cURL, OrmDefault;
 
